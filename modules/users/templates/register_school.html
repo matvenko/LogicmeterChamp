@@ -1,0 +1,71 @@
+[:no_hash:]
+<div class="caution">{{:_SCHOOL_HASH_ERROR:}}</div>
+[:no_hash:]
+[:registration:]
+<div class="main_registration">
+	<form id="school_register_form" action="clear_post.php?module={{:module:}}" onsubmit="return false">
+		<div id="check"></div>
+		<div class="main_registration_in">
+			<h1>{{:school_name:}}</h1>
+			<div class="geo_keyboard_box">
+				{{:_GEO_KEYBOARD:}} <span class="geo_keyboard" data-lang="geo"></span>
+			</div>
+
+			<h4>{{:_CONTACT_INFO:}}</h4>
+			<div class="caution">{{:_ENTER_ICT:}}</div>
+			<div class="registration">
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_NAME:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:name:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_SURNAME:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:surname:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_MOBILE:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:tel:}}</div>
+				</div>
+
+				<div style="clear: both"></div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_EMAIL:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:mail:}}</div>
+				</div>
+
+				[:unregistered:]
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_PASSWORD:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:password:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_RE_PASSWORD:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:re_passowrd:}}</div>
+				</div>
+				[:unregistered:]
+				<div style="clear: both"></div>
+			</div>
+
+			<h4>
+				<div style="float: right; padding-top: 15px; margin-right: 20px;">
+					<input type="hidden" name="school_hash" id="school_hash" value="{{:school_hash:}}">
+					<input type="hidden" name="school_register" id="school_register" value="0">
+					<input class="button" type="submit" id="submit" value="{{:_REGISTRATION:}}"/>
+				</div>
+			</h4>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	//**** submit form
+	$("#school_register_form").submit(function () {
+		$("#submit").attr('disabled', true);
+		post_call('school_register', this);
+	});
+</script>
+[:registration:]

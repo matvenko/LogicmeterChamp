@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="style/chosen.css" />
+<div class="main_registration">
+[:registration:]
+<form id="register_form" action="clear_post.php?module={{:module:}}" onsubmit="return false">
+[:registration:]
+[:view_info:]
+<form id="final_submission_form" action="clear_post.php?module={{:module:}}" onsubmit="return false">
+[:view_info:]
+	<div class="main_registration_in">
+		<h4>{{:_CHILDREN_INFO:}}</h4>
+		<div id="check"></div>
+		[:view_info:]
+		<div class="caution">{{:_CKECK_INFO_AND_CONTINUE:}}</div>
+		[:view_info:]
+		<div class="registration">
+			<div class="registration_in" style="width: 480px">
+				<div class="registration_in_title">
+					<p>{{:_NAME:}}, {{:_SURNAME:}}</p>
+				</div>
+				<div class="registration_in_value">
+					{{:child_name:}} {{:child_surname:}}
+					[:multi_children:]
+					<a href="clear_post.php?module={{:module:}}&page=registration&action=change_child" style="margin-left: 10px; font-size: 12px">{{:_CHANGE:}}</a>
+					[:multi_children:]
+				</div>
+			</div>
+		
+			<div style="clear: both"></div>
+		
+			<div class="registration_in" style="width: 180px">
+				<div class="registration_in_title"><p>{{:_CLASS:}}{{:star:}}</p></div>
+				<div class="registration_in_value">
+					<span class="{{:style_select:}}" id="grade_block">{{:grade:}}</span>
+				</div>
+			</div>
+			
+			<div class="registration_in">
+				<div class="registration_in_title"><p>{{:_REGION:}}{{:star:}}</p></div>
+				<div class="registration_in_value">
+					<span class="{{:style_select:}}" id="region_block">{{:region:}}</span>
+				</div>
+			</div>
+			
+			<div class="registration_in" style="width: 380px">
+				<div class="registration_in_title"><p>{{:_SCHOOL:}}{{:star:}}</p></div>
+				<div class="registration_in_value" id="schools_list">{{:school:}}</div>
+				<div class="registration_in_value" id="schools_list_loading" style="border: 1px solid #d9d9d9; height: 35px; display: none">
+					<img src="images/loading.gif" border="0" style="margin: 10px 0 0 15px">
+				</div>
+			</div>
+			<div style="clear: both"></div>
+		</div>	
+		
+		<div style="clear: both; padding-top: 15px"></div>
+			
+		<h4>
+			[:view_info:]
+			<div style="float: left; padding-top: 5px; margin-left: 20px">				
+				<a class="button" style="background: #2CA4DE" href="index.php?module={{:module:}}&page=check">&lt;&lt; {{:_BACK:}}</a>
+			</div>
+			<input type="hidden" name="final_submission" id="final_submission" value="0">
+			[:view_info:]
+			<div style="float: right; padding-top: 5px; margin-right: 20px;">
+				[:registration:]
+				<input type="hidden" name="register" id="register" value="0">
+				[:registration:]
+				<input class="button" type="submit" id="submit" value="{{:_CONTINUE:}} &gt;&gt;" />
+			</div>
+		</h4>
+	</div>
+</form>
+</div>
+
+<script src="functions/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+cool_selecxbox();
+
+//**** gen schools
+$("#region_id").change(function(){
+	$('#schools_list_loading').css("display", "block");
+	$('#schools_list').css("display", "none");
+	$('#school_id').empty()
+	$('#school_id').append('<option value="">------</option>');
+	$('#school_id').append('<option value="loading">{{:_LOADING:}}...</option>');
+	$('#school_id').trigger("chosen:updated");
+	$.get('clear_post.php?module={{:module:}}&page=registration', {action: 'gen_schools', region: this.value})
+		.done(function(data){
+			data = jQuery.parseJSON(data);
+			$('#school_id option[value="loading"]').remove();
+			for(i = 0; i < data.schools.length; i++){
+				$('#school_id').append('<option value="'+data.schools_id[i]+'">'+data.schools[i]+'</option>');
+				$('#school_id').trigger("chosen:updated");
+			}
+			$('#schools_list_loading').css("display", "none");
+			$('#schools_list').css("display", "block");
+		})
+})	
+
+[:registration:]
+$("#register_form").submit(function(){
+	$("#submit").attr('disabled', 'disabled');
+	post_call('register', this);
+})
+[:registration:]
+
+[:view_info:]
+$("#final_submission_form").submit(function(){
+	$("#submit").attr('disabled', 'disabled');
+	post_call('final_submission', this);
+})
+[:view_info:]
+
+</script>

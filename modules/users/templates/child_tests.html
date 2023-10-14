@@ -1,0 +1,102 @@
+[:no_ajax:]
+<script type="text/javascript" src="functions/MathJax.js"></script>
+<div class="profile_content">
+	<div class="champ_children">
+		<div id="{{:child_id:}}">
+			{{:child_name:}} {{:child_surname:}} - {{:child_grade:}} {{:_CLASS:}}
+		</div>
+	</div>
+	<div style="margin-left: -20px">
+		<h4>{{:_YOU_GAIN:}}: {{:sum_point:}} {{:_POINT:}}</h4>
+		<h4>{{:_SPENT_TIME:}}: {{:spent_time:}}</h4>
+	</div>
+	<div class="champ_tests">
+		[:champ_tests:]
+		<div id="{{:champ_test_id:}}" style="border-color: {{:test_n_border:}}">{{:test_n:}}</div>
+		[:champ_tests:]
+	</div>
+	[:no_ajax:]
+
+	<div id="test_content">
+		{{:container:}}
+		<div style="margin: 20px 0 0 20px; font-family: web_caps; size: 14">
+			{{:_TEST_POINT:}}: {{:point:}}
+		</div>
+		<div class="test_question">{{:question:}}</div>
+
+		<div class="test_preview_body">
+			[:over_20_letter:]
+			<div class="caution" style="font-weight: normal; font-size: 13px; line-height: 25px;">
+				{{:_OVER_20_LETTER:}}
+			</div>
+			[:over_20_letter:]
+			<div class="your_answer_box">
+				<div class="your_answer your_answer_box_head">{{:_YOUR_ANSWER:}}</div>
+				<div class="correct_answer_result" id="user_answer">
+					{{:user_answer:}}
+				</div>
+			</div>
+			<div class="correct_answer_box">
+				<div class="correct_answer your_answer_box_head">{{:_CORRECT_ANSWER:}}</div>
+				<div class="correct_answer_result" id="true_answer">
+					{{:true_answer:}}
+				</div>
+			</div>
+
+			<!--<div class="answer">
+				<input class="answer_button next_button" type="button" value="{{:_NEXT:}}" />
+			</div>-->
+		</div>
+	</div>
+
+<script>
+	[:javascript:]
+	try{
+		var parameters_user = [{{:answer_parameters_user:}}];
+		var answer_type = 'user';
+		var true_answer_text = true_answer(parameters_user);
+		if(true_answer_text !== ''){
+			$("#user_answer").html(true_answer_text);
+		}
+
+		var parameters_true = [{{:answer_parameters_true:}}];
+		answer_type = 'true';
+		var true_answer_text = true_answer(parameters_true);
+		if(true_answer_text !== ''){
+			$("#true_answer").html(true_answer_text);
+		}
+	}
+	catch(err){
+		console.log(err);
+	}
+	[:javascript:]
+	MathJax.Hub.Typeset();
+</script>
+[:no_ajax:]
+<script type="text/javascript">
+	$.get('body.php?module={{:module:}}&page=child_tests&child_id={{:child_id:}}&champ_test_id={{:champ_test_id:}}&view_type=ajax')
+				.done(function(data){
+					$("#test_content").html(data);
+				})
+
+	//*** active test
+	$(".profile_content").on("click", ".champ_tests div", function(){
+		var obj = this;
+		$.get('body.php?module={{:module:}}&page=child_tests&child_id={{:child_id:}}&champ_test_id='+this.id+'&view_type=ajax')
+				.done(function(data){
+					$("#test_content").html(data);
+					$(".champ_tests div").removeClass("test_active");
+					$(obj).addClass("test_active");
+				})
+	})
+	$("#{{:champ_test_id:}}").addClass("test_active");
+	$("#{{:child_id:}}").addClass("child_active");
+</script>
+</div>
+<style>
+	.MathJax_Display{
+		width: 150px;
+		display: inline !important;
+	}
+</style>
+[:no_ajax:]

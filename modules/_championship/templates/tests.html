@@ -1,0 +1,71 @@
+<script type="text/javascript" src="functions/MathJax.js"></script>
+<form id="answer_test_form" action="clear_post.php?module={{:module:}}&page=tests" method="post" onsubmit="return false">
+
+	<div class="wrong_answer_box" style="display: none">
+		<div class="wrong_answer">{{:_INCORRECT_ANSWER:}}</div>
+		<div class="wrong_answer"><input class="answer_button next_button" type="button" value="{{:_NEXT:}}" /></div>
+	</div>
+	
+	<input type="hidden" id="container" name="container" value="">
+		
+	<div class="tests_main_block">
+		<div class="test_preview" id="test_conditions" data-finished="{{:finished:}}"></div>
+		<div id="show_true_answer_animation">
+			<span id="show_true_answer_animation_text"></span>
+		</div>
+		[:reset:]
+		<a style="display: block; position: absolute; top: -20px; right: 0; cursor: pointer" href="clear_post.php?module={{:module:}}&action=reset">Reset</a>
+		[:reset:]
+		
+		<div class="tests_info">
+			<div id="active_skill" style="display: {{:active_skill_display:}}">
+				<div class="tests_info_block">
+					<span>{{:_REMAINED_TIME:}}</span>
+					<input type="hidden" id="current_time" value="{{:remained_seconds:}}">
+					<input type="hidden" name="spent_time" id="spent_time" value="0">
+					<input type="hidden" name="spent_time_limit" id="spent_time_limit" value="0">
+					<div id="clock">{{:remained_time:}}</div>
+				</div>
+				<div class="tests_info_block">
+					<span>{{:_TESTS_AMOUNT:}}</span>
+					<div id="tests_amount">{{:champ_tests_amount:}}</div>
+				</div>
+				<div class="tests_info_block">
+					<span>{{:_USED_TESTS:}}</span>
+					<div id="used_tests_amount">{{:used_tests_amount:}}</div>
+				</div>
+				<div class="tests_info_block">
+					<span>{{:_REMAINED_TEST:}}</span>
+					<div id="remained_tests_amount">{{:remained_tests_amount:}}</div>
+				</div>		
+			</div>
+		</div>
+	</div>
+	
+
+</form>
+
+<script type="text/javascript">
+{{:javascript_functions:}}
+
+show_test();
+
+$(document).ready(function() {
+	setInterval('updateClock()', 1000);
+});	
+
+//**** skip test
+$("#test_conditions").on("click", "#skip_test", function(){
+	$.get("clear_post.php?module={{:module:}}&page=tests", {action: "skip_test"})
+		.done(function(){
+			show_test();
+		})
+})
+</script>
+
+<style>
+.MathJax_Display{
+	width: 150px;
+	display: inline !important;	
+}
+</style>

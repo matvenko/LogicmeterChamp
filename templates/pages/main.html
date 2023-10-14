@@ -1,0 +1,78 @@
+<header>
+	<div class="head_body">{{:admin:}}
+		<div class="logo">
+			<a href="index.php"></a>
+		</div>
+		<div class="menu_default">
+			{{:clear_post.php?module=menu&page=main&menu_id=2:}}
+		</div>
+		<div class="head_right">
+			{{:clear_post.php?module=users&page=auth_main_page:}}
+		</div>
+	</div>
+</header>
+
+<!-- <div class="head_line">
+	<div class="head_right">
+		{{:clear_post.php?module=users&page=login_default_page:}}
+	</div>
+</div> -->
+
+<script src="functions/jquery.plugin.min.js"></script>
+<script src="functions/jquery.countdown.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	var austDay = new Date();
+	austDay = new Date({{:year:}}, {{:month:}} - 1, {{:day:}}, {{:hour:}}, {{:minute:}}, 0);
+	//austDay = new Date(2016, 1, 25, 17, 50, 0);
+
+	$.countdown.regionalOptions['ge'] = {
+			labels: ['წელი', 'თვე', 'კვირა', 'დღე', 'საათი', 'წუთი', 'წამი'],
+			labels1: ['წელი', 'თვე', 'კვირა', 'დღე', 'საათი', 'წუთი', 'წამი'],
+			labels2: ['წელი', 'თვე', 'კვირა', 'დღე', 'საათი', 'წუთი', 'წამი'],
+			digits: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+			timeSeparator: ':', isRTL: false};
+	
+	$('#defaultCountdown').countdown($.extend({until: austDay, format: 'DHMS', onExpiry: liftOff}, $.countdown.regionalOptions['ge']));
+	/* $('#year').text(austDay.getFullYear()); */
+});
+
+function liftOff(){
+	$(".until").css("display", "none");
+	$(".after").css("display", "block");
+}
+
+</script>
+
+<style>
+.until{
+	display: {{:until_display:}}
+}
+.after{
+display: {{:after_display:}}
+}
+.finish{
+	display: {{:finish_display:}}
+}
+</style>
+
+<div class="center">
+	<div class="center_body">
+		<div id="countdown" style="display: {{:countdown_show:}}">
+			{{:clear_post.php?module=text&page=text&link_id=2:}}	
+			<div class="until" style="display: {{:until_display:}}" id="defaultCountdown"></div>
+		</div>
+		<a class="after" id="champ_started" style="display: {{:after_display:}}" href="index.php?module=championship">
+			{{:_START_TEST:}}
+		</a>
+		<div class="news">
+			{{:clear_post.php?module=text&page=text&link_id=3:}}
+		</div>
+	</div>
+</div>
+
+<div class="clearfix"></div>
+
+<footer>
+	<div class="footerCopy">{{:_COPYRIGHT:}}</div>
+</footer>

@@ -1,0 +1,102 @@
+[:no_school:]
+<div class="caution">{{:_YOU_HAVE_NO_SCHOOL:}}</div>
+[:no_school:]
+
+[:for_school:]
+<div class="main_registration">
+	<div class="main_registration_in">
+		<h1>{{:school_name:}}</h1>
+		<div style="margin-bottom: 20px">
+			<form method="get" action="index.php">
+				<input type="hidden" name="module" value="{{:module:}}">
+				<input type="hidden" name="page" value="school_profile">
+				<table class="statistic_table">
+					<tr>
+						<th>{{:_NAME:}}, {{:_SURNAME:}}</th>
+						<th>{{:_CLASS:}}</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td style="text-align: center">{{:name:}}</td>
+						<td style="text-align: center; height: 40px">
+							<div class="grades_search">
+								<a class="{{:active_grade0:}}" href="index.php?module={{:module:}}&page=school_profile">*</a>
+								<a class="{{:active_grade2:}}" href="index.php?module={{:module:}}&page=school_profile&grade=2">2</a>
+								<a class="{{:active_grade3:}}" href="index.php?module={{:module:}}&page=school_profile&grade=3">3</a>
+								<a class="{{:active_grade4:}}" href="index.php?module={{:module:}}&page=school_profile&grade=4">4</a>
+								<a class="{{:active_grade5:}}" href="index.php?module={{:module:}}&page=school_profile&grade=5">5</a>
+								<input type="hidden" name="grade" value="{{:grade:}}">
+							</div>
+						</td>
+						<td style="text-align: center">
+			<span class="statistic_search" style="margin: 0; padding: 0">
+				<input type="submit" value="{{:_SEARCH:}}">
+			</span>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<div class="children_list">
+			<div class="result_amount">{{:_SCHOOL_CHILDREN:}} <strong>{{:children_amount:}}</strong> {{:_SCHOOLCHILD:}}</div>
+			<div class="instruction">
+				<a href="modules/{{:module:}}/templates/instruction_3.pdf">
+					<img src="images/pdf.png" style="width: 16px; height: 16px">
+					{{:_INSTRUCTION:}} N3
+				</a>
+			</div>
+			<table class="statistic_table" cellpadding="5">
+				<tr>
+					<th style="width: 20px">N</th>
+					<th style="width: 40px">{{:_CODE:}}</th>
+					<th style="width: 230px; text-align: left">{{:_SCHOOLCHILD:}}</th>
+					<th style="width: 100px">{{:_BIRTHDATE:}}</th>
+					<th style="width: 100px">{{:_CLASS:}}</th>
+					[:start_test:]
+					<th style="width: 130px"></th>
+					[:start_test:]
+					[:show_results:]
+					<th style="width: 70px">{{:_POINT:}}</th>
+					<th style="width: 120px">{{:_TIME:}}</th>
+					<th style="width: 60px">{{:_TESTS:}}</th>
+					[:show_results:]
+				</tr>
+				[:children:]
+				<tr>
+					<td class="{{:child_status:}}" style="text-align: center">{{:n:}}</td>
+					<td class="{{:child_status:}}" style="text-align: center">{{:child_id:}}</td>
+					<td class="{{:child_status:}}">
+						{{:name:}} {{:surname:}}
+						<span style="color: green">{{:final:}}</span>
+					</td>
+					<td class="{{:child_status:}}" style="text-align: center">{{:birthdate:}}</td>
+					<td class="{{:child_status:}}" style="text-align: center">
+						{{:grade:}}
+					</td>
+					[:start_test:]
+					<td class="{{:child_status:}}" style="text-align: center">
+						<a style="display: {{:start_test_status:}}"
+						   class="start_test popup button {{:button_status:}}" href="body.php?module={{:module:}}&page=child_info&child_id={{:child_id:}}&type=popup">{{:_START:}}</a>
+					</td>
+					[:start_test:]
+					[:show_results:]
+					<td class="{{:child_status:}}" style="text-align: center">{{:point:}}</td>
+					<td class="{{:child_status:}}" style="text-align: center">{{:time:}}</td>
+					<td class="{{:child_status:}}" style="text-align: center">
+						<a href="index.php?module=users&page=child_tests&child_id={{:child_id:}}">
+							{{:_TESTS:}}
+						</a>
+					</td>
+					[:show_results:]
+				</tr>
+				[:children:]
+			</table>
+		</div>
+
+		<div style="padding: 5px 0 10px 10px">
+			{{:split_page:}}
+		</div>
+	</div>
+</div>
+[:for_school:]

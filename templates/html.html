@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<HTML id="html">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta property="og:title" content="Logicmeter" />
+<meta property="og:description" content="{{:fb_description:}}">
+<meta property="og:image" content="http://logicmeter.com/images/fb_share.jpg">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+<link rel="icon" type="image/jpg" href="images/logicmeter_icon.png?v=3" />
+<link href="style/style.css?v=20161226" rel="stylesheet" type="text/css" media="screen, handheld" >
+<link href="style/font-awesome.min.css" rel="stylesheet" type="text/css" media="screen, handheld" >
+<link rel="stylesheet" href="style/magnific-popup.css"> 
+<link href="modules/users/style/style.css" rel="stylesheet" type="text/css">
+<link href="modules/championship/style/test_style.css" rel="stylesheet" type="text/css">
+{{:module_style:}}
+<title>{{:page_title:}}</title>
+
+<script type="text/javascript" src="functions/ajax.js"></script>
+<script type="text/javascript" src="functions/menu.js"></script>
+<script type="text/javascript" src="functions/other.js"></script>
+<script type="text/javascript" src="modules/championship/files/math_functions.js"></script>
+<script type="text/javascript" src="functions/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="functions/jquery.base64.js"></script>
+<script type="text/javascript" src="functions/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="functions/jquery.geo.typing.js"></script>
+<script type="text/javascript" src="functions/jcanvas.min.js"></script>
+<script type="text/javascript" src="functions/jquery-ui.min.js"></script>
+<script type="text/javascript" src="functions/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript">	
+jQuery.fn.extend({
+	insertAtCaret : function(myValue) {
+		return this.each(function(i) {
+			if (document.selection) {
+				//For browsers like Internet Explorer
+				this.focus();
+				var sel = document.selection.createRange();
+				sel.text = myValue;
+				this.focus();
+			} else if (this.selectionStart || this.selectionStart == '0') {
+				//For browsers like Firefox and Webkit based
+				var startPos = this.selectionStart;
+				var endPos = this.selectionEnd;
+				var scrollTop = this.scrollTop;
+				this.value = this.value.substring(0, startPos) + myValue
+						+ this.value.substring(endPos, this.value.length);
+				this.focus();
+				this.selectionStart = startPos + myValue.length;
+				this.selectionEnd = startPos + myValue.length;
+				this.scrollTop = scrollTop;
+			} else {
+				this.value += myValue;
+				this.focus();
+			}
+		});
+	}
+});
+
+$(document).ready(function() {
+	$('.popup').magnificPopup({
+		type: 'ajax',
+		alignTop: true,
+		closeOnContentClick: false
+	});
+
+	$(".georgian").geo();
+
+	$(".geo_keyboard").click(function(){
+		if($(this).attr("data-lang") == "geo"){
+			$(".georgian").geo({ turn: "off" });
+			$(this).css("background-position", "top right");
+			$(this).attr("data-lang", "eng");
+		}
+		else{
+			$(".georgian").geo();
+			$(this).css("background-position", "top left");
+			$(this).attr("data-lang", "geo");
+		}
+	});
+});
+
+//********** DropDown ******************
+$(document).on('click', ".dropdown", function(){
+	var pointer_img_position = $("#dropdown_box_"+this.id).css('display') == 'none' ? "top" : "bottom";
+	$(this).css('background-position', pointer_img_position+' right');
+	$("#dropdown_box_"+this.id).slideToggle();
+})
+</script> 
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]
+	},
+	"HTML-CSS": { availableFonts: [],
+    preferredFonts: "TeX",
+    webFont:"",
+    imageFont:"",
+    undefinedFamily:"'Arial Unicode MS',serif"}
+});
+</script>
+</HEAD>
+
+<body>
+	<div class="center_link links">
+		<a href="http://center.logicmeter.com/">{{:_CENTER:}}</a>
+	</div>
+	<div class="champ_link links">
+		<a href="http://logicmeter.com/index.php">{{:_PORTAL:}}</a>
+	</div>
+	<div class="main">{{:body:}}</div>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74375787-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>

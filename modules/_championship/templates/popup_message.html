@@ -1,0 +1,76 @@
+[:no_answer:]
+<div>{{:_NO_ANSWER:}}</div>
+<div style="margin-top: 20px">
+	<div style="display: inline-block"><input class="answer_button" id="return_button" type="submit" value="{{:_RETURN:}}" /></div>
+	<div style="display: inline-block; margin-left: 10px"><input class="answer_button" id="continue_button" type="submit" value="{{:_CONTINUE:}}" style="background: #2CA5DE" /></div>
+</div>
+
+<script type="text/javascript">
+$("#continue_button").click(function(){
+	$("#no_answer").val(1);
+	$("#continue_button").attr('disabled', 'disabled');
+	post_call('answer_test', this);
+	var magnificPopup = $.magnificPopup.instance;
+	magnificPopup.close();
+});	
+$("#return_button").click(function(){
+	var magnificPopup = $.magnificPopup.instance;
+	magnificPopup.close();
+})
+</script>
+[:no_answer:]
+
+[:go_and_register:]
+<div style="float: left; width: 400px">
+	<div>{{:_GO_AND_REGISTER:}}</div>
+	<div style="margin-top: 20px">
+		<div style="display: inline-block"><a class="answer_button" href="index.php?module=users&page=register">{{:_REGISTRATION:}}</a></div>
+		<div style="display: inline-block; margin-left: 10px"><input class="answer_button" id="continue_button" type="submit" value="{{:_CONTINUE:}}" /></div>
+	</div>
+</div>
+<div style="float: left; width: 400px; border-left: 2px solid #DBDBDB">{{:registration_form:}}</div>
+
+<script type="text/javascript">
+show_test();
+$("#continue_button").click(function(){
+	var magnificPopup = $.magnificPopup.instance; 
+	magnificPopup.close();
+})
+</script>
+[:go_and_register:]
+
+[:finished_skill:]
+<div id="popup_logicstar">
+	<div>{{:_FINISHED_SKILL:}}<br><img src="images/logicstar.png" border="0"></div>
+	<div>
+		<a class="popup" href="body.php?module=users&page=award_details&child_award_id={{:child_award_id:}}&award_type=math&type=popup&custom_style=award_popup">
+			{{:_CERTIFICATE:}} <img src="images/certificate.png" border="0">
+		</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+update_right_block();
+show_test();
+$("#finished_skill").html($("#popup_logicstar").html());
+
+$(document).ready(function() {
+	$('.popup').magnificPopup({
+		type: 'ajax',
+		alignTop: true,
+		closeOnContentClick: false
+	});	
+});
+</script>
+[:finished_skill:]
+
+[:finished_skill_literacy:]
+<div class="literacy_finished_skill_popup">{{:_FINISHED_SKILL:}}</div>
+
+<script type="text/javascript">
+update_right_block();
+show_test();
+$("#finished_skill").html($(".literacy_finished_skill_popup").html());
+</script>
+[:finished_skill_literacy:]
+

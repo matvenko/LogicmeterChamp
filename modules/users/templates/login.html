@@ -1,0 +1,48 @@
+<div id="login">
+	[:for_school:]
+	<h3 style="text-align: center;">{{:_FOR_SCHOOL_ADMIN:}}</h3>
+	<div class="caution" style="margin: 20px auto; width: 430px; text-align: center">{{:_IF_SCHOOL_NOT_REGISTERED:}}</div>
+	[:for_school:]
+<form id="login_form" method="post"	action="clear_post.php?module={{:module:}}&page=login&type={{:type:}}" onsubmit="return false">
+	<div class="login_title">{{:_LOGIN_TO_SYSTEM:}}</div>
+	<div id="login_error"></div>
+	<div class="userLoginPane">
+		<div class="user">
+			<input type="text" id="username" name="username" placeholder="{{:_USERNAME:}}...">
+		</div>
+		<div class="password">
+			<input type="password" id="password" name="password" placeholder="{{:_PASSWORD:}}...">
+		</div>
+	</div>
+	<div class="userControlsPane">
+	    <input type="submit" id="login_button" name="login" value="{{:_LOGIN_TO_SYSTEM:}}" />
+		<span><a href="{{:location_logicmeter:}}index.php?module=users&page=restore_password" style="color: #373737">{{:_RESTORE_PASSWORD:}}</a></span>
+	</div>
+</form>
+</div>
+
+<script type="text/javascript">
+$("#login_form").submit(function(){
+	$.post('clear_post.php?module={{:module:}}&page=login', {login: 1, username: obj_value('username'), password: obj_value('password'), login_type: 'ajax'})
+		.done(function(data){
+			if(data == 'ok'){
+				reload();
+				/*$.get('body.php?module={{:module:}}&page=choose_profile_main')
+				.done(function(data){
+					if(data == "success"){
+						reload();
+					}
+					else{
+						$("#login").html(data);
+						$("#head_child").css('background-image', 'url(images/head_child_2.jpg)');
+						$(".register").html('');
+					}
+				})*/
+			}
+			else{
+				$("#login_error").css('display', 'block');
+				$("#login_error").html(data);
+			}
+		})
+})
+</script>

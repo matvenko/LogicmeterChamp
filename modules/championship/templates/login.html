@@ -1,0 +1,26 @@
+<div id="login">
+	<form id="login_form" method="post"	action="clear_post.php?module={{:module:}}&page=login" onsubmit="return false">
+		<div class="login_title" style="margin: 50px auto 0 auto">{{:_LOGIN_TO_SYSTEM:}}</div>
+		<div id="check" style="margin: auto; width: 340px"></div>
+		<div class="userLoginPane" style="margin-top: 20px !important">
+			<div class="user">
+				<input type="text" id="child_code" name="child_code" placeholder="{{:_CHILD_CODE:}}...">
+			</div>
+			<div class="password">
+				<input type="password" id="password" name="password" placeholder="{{:_PASSWORD:}}...">
+			</div>
+		</div>
+		<div class="userControlsPane">
+			<input type="submit" id="login_button" name="login" value="{{:_LOGIN_TO_SYSTEM:}}" />
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	$("#login_form").submit(function(){
+		$.post('clear_post.php?module={{:module:}}&page=login', {login: 1, child_code: obj_value('child_code'), password: obj_value('password')})
+				.done(function(data){
+					error_message(data);
+				})
+	})
+</script>

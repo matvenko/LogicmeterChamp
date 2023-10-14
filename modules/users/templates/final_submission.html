@@ -1,0 +1,73 @@
+<div class="main_registration">
+	<form id="final_submission_form" action="clear_post.php?module={{:module:}}" onsubmit="return false">
+		<div class="main_registration_in">
+			<h1>{{:_FINAL_SUBMISSION:}}</h1>
+			<!--<div class="caution">{{:_CKECK_INFO_AND_CONTINUE:}}</div>-->
+			<h4>{{:_PARENT_INFO:}}</h4>
+			<div class="registration">
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_NAME:}}, {{:_SURNAME:}}</p></div>
+					<div class="registration_in_value">{{:parent_name:}} {{:parent_surname:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_MOBILE:}}</p></div>
+					<div class="registration_in_value">{{:parent_mobile:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_EMAIL_PARENTS:}}</p></div>
+					<div class="registration_in_value">{{:parent_mail:}}</div>
+				</div>
+
+				<div style="clear: both"></div>
+			</div>
+
+			<h4>{{:_CHILDREN_INFO:}}</h4>
+			<div style="padding: 20px">
+				<table class="statistic_table">
+					<tr>
+						<th style="width: 20px">N</th>
+						<th style="width: 200px">{{:_NAME:}}, {{:_SURNAME:}}</th>
+						<th style="width: 80px">{{:_GRADE:}}</th>
+						<th style="width: 80px">{{:_BIRTHDATE:}}</th>
+						<th>{{:_SCHOOL:}}</th>
+					</tr>
+					[:children:]
+					<tr>
+						<td style="text-align: center">{{:n:}}</td>
+						<td>
+							<div style="padding: 0 10px">{{:child_name:}} {{:child_surname:}}</div>
+						</td>
+						<td style="text-align: center">{{:grade:}}</td>
+						<td style="text-align: center">{{:child_birthdate:}}</td>
+						<td>
+							<div style="padding: 0 10px">{{:region:}} - {{:school:}}</div>
+						</td>
+					</tr>
+					[:children:]
+				</table>
+			</div>
+
+			<h4>
+				<div style="float: left; padding-top: 5px; margin-left: 20px">
+					<a class="button" style="background: #2CA4DE" href="index.php?module={{:module:}}&page=register&member=yes">&lt;&lt; {{:_BACK:}}</a>
+				</div>
+				<div style="float: right; padding-top: 15px; margin-right: 20px;">
+					<input type="hidden" name="final_submission" id="final_submission" value="0">
+					<input class="button" type="submit" id="submit" value="{{:_FINISH:}}"/>
+				</div>
+			</h4>
+		</div>
+	</form>
+</div>
+
+
+<script type="text/javascript">
+	//**** submit form
+	$("#final_submission_form").submit(function () {
+		$("#submit").attr('disabled', true);
+		post_call('final_submission', this);
+	});
+
+</script>

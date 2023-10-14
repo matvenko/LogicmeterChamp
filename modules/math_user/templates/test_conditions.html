@@ -1,0 +1,67 @@
+<div id="check"></div>
+[:guest_limit_message:]
+<div class="caution" style="margin: 0">{{:_GUEST_TEST_LIMIT_IS_OVER:}}</div>
+[:guest_limit_message:]
+
+<div class="test_preview_body">
+	<div class="test_question">{{:question:}}</div>
+	
+	<div class="test_answers">
+		[:answers_test:]
+		<table class="answer_type_test">{{:answer:}}</table>
+			[:answer_test:]
+			<tr>
+				<td class="styled_checkbox{{:disabled:}}" width="25">
+					{{:answer_input:}}<label for="answer"></label></td>
+				<td>
+					<label for="answer_{{:answer_n:}}">{{:answer:}}</label>
+				</td>
+			</tr>
+			[:answer_test:]
+		[:answers_test:]
+			
+		[:answers_horizontal:]
+		<table class="answer_type_test">
+			<tr>
+				{{:answer_text:}}
+			</tr>
+			<tr>
+				{{:answer:}}
+			</tr>
+		</table>
+			[:answer_horizontal:]
+			<td align="center">{{:answer:}}</td>
+			[:answer_horizontal:]
+		[:answers_horizontal:]
+		
+		[:answers_manual:]
+		<div class="answer_type_manual">
+			{{:answer:}}
+			[:answer_manual:]
+			<div style="float: left">{{:answer:}}</div>
+			[:answer_manual:]
+		</div>
+		[:answers_manual:]
+		
+		[:answers_hidden:]
+		{{:answer:}}
+		[:answers_hidden:]
+	</div>
+	[:answer_button:]
+	<div class="answer">
+		<input type="hidden" name="test_id" id="test_id" value="{{:test_id:}}">
+		<input type="hidden" name="answer_test" id="answer_test" value="0">
+		<input type="hidden" name="no_answer" id="no_answer" value="0">
+		<input class="answer_button" id="answer_button" type="submit" value="{{:_ANSWER:}}" {{:disabled:}}/>
+	</div>
+	[:answer_button:]
+</div>
+[:admin:]
+<div style="position: absolute; right: 10px; top: 2px">{{:test_author:}}: {{:test_code:}}</div>
+[:admin:]
+
+<script type="text/javascript">
+//MathJax.Hub.Typeset();
+
+$("#answer_1").focus();
+</script>

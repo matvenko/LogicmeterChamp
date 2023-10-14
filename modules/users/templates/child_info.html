@@ -1,0 +1,27 @@
+<div class="child_info">
+	<form id="school_login_form" action="clear_post.php?module=championship&page=login" onsubmit="return false">
+		<div>{{:name:}} {{:surname:}}</div>
+		<div>{{:_GRADE:}}: {{:grade:}}</div>
+		[:caution:]
+		<div class="caution">{{:_ALREADY_STARTED:}}</div>
+		[:caution:]
+		[:can_start:]
+		<span class="button" id="return">{{:_RETURN:}}</span>
+		<input type="hidden" name="child_id" value="{{:child_id:}}">
+		<input type="hidden" name="school_login" id="school_login" value="0">
+		<input class="button" type="submit" name="submit" id="submit" value="{{:_START_TEST:}}">
+		[:can_start:]
+	</form>
+</div>
+
+<script>
+	$("#return").click(function () {
+		var magnificPopup = $.magnificPopup.instance;
+		magnificPopup.close();
+	})
+
+	$("#school_login_form").submit(function () {
+		$("#submit").attr('disabled', 'disabled');
+		post_call("school_login", this);
+	})
+</script>

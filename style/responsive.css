@@ -1,0 +1,33 @@
+/* .wrapper {
+	width: 320px !important;
+	margin: auto;
+	position: relative;
+	height: 100%;
+}
+
+#learning .learnBullet {
+	float: left;
+	height: 230px;
+	width: 100px;
+	border-radius: 100%;
+	background-position: top center;
+	cursor: pointer;
+}
+
+#learning .learnBullet#math {
+	margin: 20px 0 0 10px;
+	background-image: url(../images/math1.png);
+	background-repeat: no-repeat;
+}
+
+#learning .learnBullet#math:hover {
+	transition: 0.2s ease-in-out;
+}
+
+#learning .learnBullet#logic {
+	margin: 30px 0 0 10px;
+	background-image: url(../images/logic1.png);
+	background-repeat: no-repeat;
+}
+
+ */

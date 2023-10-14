@@ -1,0 +1,214 @@
+[:choose_membership:]
+<div class="main_registration">
+	<div class="choose_membership">
+		<h2>{{:_ARE_YOU_MEMBER:}}</h2>
+		<a href="index.php?module={{:module:}}&page=login&referer={{:referrer_url:}}">{{:_YES:}}</a>
+		<a href="index.php?module={{:module:}}&page=register&member=no">{{:_NO:}}</a>
+	</div>
+</div>
+[:choose_membership:]
+
+[:registration:]
+<link rel="stylesheet" href="style/chosen.css"/>
+<div class="main_registration">
+	<form id="register_form" action="clear_post.php?module={{:module:}}" onsubmit="return false">
+		<div id="check"></div>
+		<div class="main_registration_in">
+			<h1>{{:_BE_MEMBER:}}</h1>
+
+			<h4>{{:_PARENT_INFO:}}</h4>
+			<div class="geo_keyboard_box">
+				{{:_GEO_KEYBOARD:}} <span class="geo_keyboard" data-lang="geo"></span>
+			</div>
+			<div class="registration">
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_NAME:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:parent_name:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_SURNAME:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:parent_surname:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_MOBILE:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:parent_mobile:}}</div>
+				</div>
+
+				<div style="clear: both"></div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_EMAIL_PARENTS:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:parent_mail:}}</div>
+				</div>
+
+				[:unregistered:]
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_PASSWORD:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:parent_password:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_RE_PASSWORD:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:parent_re_passowrd:}}</div>
+				</div>
+				[:unregistered:]
+
+				<div style="clear: both"></div>
+			</div>
+
+			<h4>{{:_CHILDREN_INFO:}}</h4>
+			<input type="hidden" id="children_amount" name="children_amount" value="{{:children_amount:}}">
+			[:children:]
+			<div class="registration children {{:skip_child_class:}}" id="child_{{:child_n:}}">
+				<div class="child_n">{{:child_n:}}</div>
+				<div class="registration_in">
+					<input type="hidden" name="child_id_{{:child_n:}}" name="child_id_{{:child_n:}}" value="{{:child_id:}}">
+					<div class="registration_in_title"><p>{{:_BIRTHDATE:}}{{:star:}}</p></div>
+					<div class="registration_in_value">
+						<span class="style_select">{{:child_birthdate_year:}}</span>
+						<span class="style_select">{{:child_birthdate_month:}}</span>
+						<span class="style_select">{{:child_birthdate_day:}}</span>
+					</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_NAME:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:child_name:}}</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_SURNAME:}}{{:star:}}</p></div>
+					<div class="registration_in_value">{{:child_surname:}}</div>
+				</div>
+
+				<div style="clear: both"></div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_CLASS:}}{{:star:}}</p></div>
+					<div class="registration_in_value">
+						<span class="style_select">{{:grade:}}</span>
+					</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_REGION:}}{{:star:}}</p></div>
+					<div class="registration_in_value">
+						<span class="style_select region" data-n="{{:child_n:}}">{{:region:}}</span>
+					</div>
+				</div>
+
+				<div class="registration_in">
+					<div class="registration_in_title"><p>{{:_SCHOOL:}}{{:star:}}</p></div>
+					<div class="registration_in_value" id="schools_list_{{:child_n:}}">
+						{{:school:}}
+					</div>
+					<div class="registration_in_value" id="schools_list_loading_{{:child_n:}}" style="border: 1px solid #d9d9d9; height: 35px; display: none">
+						<img src="images/loading.gif" border="0" style="margin: 10px 0 0 15px">
+					</div>
+				</div>
+
+				<div style="clear: both"></div>
+
+				<div class="registration_in" style="display: {{:skip_child_style:}}">
+					<div class="registration_in_title skip_child"><p>{{:skip_child:}}{{:_SKIP_CHILD:}}</p></div>
+				</div>
+				<div style="clear: both"></div>
+			</div>
+			<div style="clear: both"></div>
+			[:children:]
+
+			<div style="clear: both"></div>
+			<div class="add_child"><i class="fa fa-plus" aria-hidden="true"></i> {{:_ADD_CHILD:}}</div>
+
+			<h4>
+				<div class="registration" style="float: left; margin-top: 20px; text-align: left" id="terms_and_rules_block">
+					{{:terms_and_rules:}} <label for="terms_and_rules">{{:_I_AGREE:}}</label>
+					<a class="popup" href="body.php?module=text&page=text&link_id=5&type=popup&custom_style=terms_and_rules">{{:_TERMS_AND_RULES:}}</a>
+				</div>
+
+				<div style="float: right; padding-top: 15px; margin-right: 20px;">
+					<input type="hidden" name="register" id="register" value="0">
+					<input class="button" type="submit" id="submit" value="{{:_REGISTRATION:}}"/>
+				</div>
+			</h4>
+		</div>
+	</form>
+</div>
+
+<script src="functions/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	cool_selecxbox();
+
+	function show_children(amount) {
+		for (i = 1; i <= 12; i++) {
+			$("#child_" + i).css('visibility', i > amount ? 'hidden' : 'visible');
+			$("#child_" + i).css('position', i > amount ? 'absolute' : 'relative');
+		}
+	}
+	show_children(obj_value('children_amount'));
+
+	//**** add child
+	$(".add_child").click(function () {
+		$("#children_amount").val(parseInt($("#children_amount").val()) + 1);
+		if (obj_value('children_amount') > 0) {
+			show_children(obj_value('children_amount'));
+		}
+		else {
+			alert('{{:_NO_CHILDREN_AMOUNT:}}!');
+			$("#children_amount").val(1);
+		}
+	})
+	//*****************
+
+	//**** skip child
+	$(".skip_child input").click(function(){
+		if(parseInt(obj_value(this.id)) == 1){
+			$(this).closest(".children").addClass("skip_child_block");
+		}
+		else{
+			$(this).closest(".children").removeClass("skip_child_block");
+		}
+	/*	$(this).closest(".children").css({
+			"opacity": parseInt(obj_value(this.id)) == 1 ? "0.4" : "1",
+			"background": parseInt(obj_value(this.id)) == 1 ? "#F4F4F4" : "#fff"
+		});*/
+	})
+
+	//**** gen schools
+	$(".region select").change(function () {
+		var obj = this;
+		var n = $(this).parent().data('n');
+		$('#schools_list_loading_'+n).css("display", "block");
+		$('#schools_list_'+n).css("display", "none");
+		$('#school_id_'+n).empty()
+		$('#school_id_'+n).append('<option value="">------</option>');
+		$('#school_id_'+n).append('<option value="loading">{{:_LOADING:}}...</option>');
+		$('#school_id_'+n).trigger("chosen:updated");
+		$.get('clear_post.php?module={{:module:}}&page=register', {action: 'gen_schools', region: this.value})
+				.done(function (data) {
+					data = jQuery.parseJSON(data);
+					$('#school_id_'+n+' option[value="loading"]').remove();
+					if(data.schools.length > 0) {
+						for (i = 0; i < data.schools.length; i++) {
+							$('#school_id_'+n).append('<option value="' + data.schools_id[i] + '">' + data.schools[i] + '</option>');
+							$('#school_id_'+n).trigger("chosen:updated");
+						}
+
+					}
+					$('#schools_list_loading_'+n).css("display", "none");
+					$('#schools_list_'+n).css("display", "block");
+				})
+	})
+
+
+	//**** submit form
+	$("#register_form").submit(function () {
+		$("#submit").attr('disabled', true);
+		post_call('register', this);
+	});
+
+</script>
+[:registration:]

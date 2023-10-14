@@ -1,0 +1,63 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ka_GE/sdk.js#xfbml=1&version=v2.5&appId=470575553140786";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="finish_test">
+	<h2>{{:_TEST_IS_FINISHED:}}</h2>
+	<div id="message_1">
+		<div>{{:_YOU_ANSWERED:}} <span>{{:answer_tests_amount:}}</span> {{:_TEST_S:}}</div>
+	</div>
+	<div id="message_2">
+		<div>{{:_BETWEEN_THEM:}} {{:_WAS_TRUE:}} <span>{{:true_answers_amount:}}</span>-{{:_S:}}</div>
+	</div>
+	<!--<div id="message_3">
+		<div>{{:_WAS_WRONG:}} <span>{{:wrong_tests_amount:}}</span>-{{:_S:}}</div>
+	</div>-->
+	<div id="message_3">
+		<div>{{:_FINAL_AMOUNT:}} <span>{{:final_point:}}</span> {{:_POINT:}}</div>
+	</div>
+	<div id="result">
+		<div class="{{:result_class:}}">{{:_YOU_GAIN_SECOND_STAGE:}}</div>
+	</div>
+	[:next_stage:]
+	<div id="share">
+		<!-- <a target="blank" href="http://www.facebook.com/sharer/sharer.php?u={{:share_url:}}&title={{:share_title:}}">
+			<img src="images/share_results.png" border="0">
+		</a> -->
+		<div class="fb-share-button" data-href="{{:share_url:}}" data-layout="button"></div>
+	</div>
+	[:next_stage:]
+</div>
+
+<script type="text/javascript" src="functions/jquery.animateNumber.min.js"></script>
+<script type="text/javascript">
+$("#test_conditions").attr("data-finished", "1");
+function animate_results(n, message_amount){
+	var amount = $(".finish_test #message_"+n+" div span").html();
+	$(".finish_test #message_"+n+" div span").html(0);
+	$(".finish_test #message_"+n+"").animate({width: "300px"}, 1000, function(){
+		$(".finish_test #message_"+n+" div span").animateNumber({number: amount}, 1000, function(){
+			if(n < message_amount){
+				n++;
+				animate_results(n, message_amount);			
+			}
+			else{
+			//	setTimeout(function(){ $("#result").animate({opacity: 1}) }, 1500);
+			//	setTimeout(function(){ $("#share").animate({opacity: 1}) }, 2000);
+			}
+		});
+		
+	});
+}
+$(".finish_test h2").animate({opacity: 1}, 1500, function(){
+	img = new Image();		
+	img.src = "images/apple_like.png";	
+	animate_results(1, 4);
+});
+</script>
